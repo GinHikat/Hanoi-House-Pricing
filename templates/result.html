@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Result</title>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url('https://source.unsplash.com/1600x900/?house,realestate') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .card {
+            background-color: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+            text-align: center;
+            max-width: 450px;
+            backdrop-filter: blur(10px);
+        }
+        .price-box {
+            background-color: #dfe6e9;
+            color: #2d3436;
+            padding: 20px;
+            border-radius: 12px;
+        }
+        .icon {
+            font-size: 50px;
+            color: #0984e3;
+            margin-bottom: 10px;
+        }
+        h2 {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="price-box">
+            <i class="fas fa-home icon"></i>
+            <h2>Estimated House Price</h2>
+            <p style="font-size: 1.5em; font-weight: bold;">
+                {{ (result|float|exp)|round(2)|int|comma }} VNĐ
+            </p>
+            <p style="margin-top: 10px;">This estimate is based on the features you provided. 🏡</p>
+        </div>
+    </div>
+</body>
+</html>

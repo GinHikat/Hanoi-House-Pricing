@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>House Price Assessment</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            font-size: 14px;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.15);
+            width: 90%;
+            max-width: 500px;
+        }
+        h1 {
+            font-size: 1.8em;
+            margin-bottom: 10px;
+        }
+        p {
+            font-size: 1em;
+            margin-bottom: 15px;
+        }
+        .form-group {
+            text-align: left;
+            margin-bottom: 15px;
+        }
+        label {
+            font-size: 0.95em;
+            font-weight: bold;
+        }
+        select, input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border-radius: 5px;
+            border: none;
+            font-size: 0.95em;
+        }
+        .btn {
+            background: #00b894;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            font-size: 1em;
+            border-radius: 6px;
+            transition: background 0.3s ease-in-out;
+            border: none;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background: #019875;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>House Price Assessment</h1>
+        <p>Fill in the property details to estimate the price.</p>
+
+        <form action="{{ url_for('predict') }}" method="post">
+            <div class="form-group">
+                <label>Area (m²)</label>
+                <input type="number" name="area" required>
+            </div>
+
+            <div class="form-group">
+                <label>Number of Bedrooms</label>
+                <input type="number" name="bedrooms" required>
+            </div>
+
+            <div class="form-group">
+                <label>Number of Bathrooms</label>
+                <input type="number" name="bathrooms" required>
+            </div>
+
+            <div class="form-group">
+                <label>Number of floors</label>
+                <input type="number" name="floors" required>
+            </div>
+
+            <div class="form-group">
+                <label>Property Type</label>
+                <select name="property_type" required>
+                    <option value="" selected disabled>Select Property Type</option>
+                    <option value="villa">Villa</option>
+                    <option value="shophouse">Shophouse</option>
+                    <option value="private_house">Private House</option>
+                    <option value="apartment">Apartment</option>
+                    <option value="street_house">Street House</option>
+                    <option value="land">Land</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Furniture</label>
+                <select name="furniture" required>
+                    <option value="" selected disabled>Select Furniture Level</option>
+                    <option value="none">None</option>
+                    <option value="basic">Basic</option>
+                    <option value="full">Full</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Legal Status</label>
+                <select name="legal_status" required>
+                    <option value="" selected disabled>Select Legal Status</option>
+                    <option value="has_title">Has Title</option>
+                    <option value="contract">Contract</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Maximum Distance to City Center (km)</label>
+                <select name="distance_to_center_max" required>
+                    <option value="" selected disabled>Select Max Distance</option>
+                    <option value="1">1 km</option>
+                    <option value="10">10 km</option>
+                    <option value="20">20 km</option>
+                    <option value="30">30 km</option>
+                    <option value="40">40 km</option>
+                    <option value="50">50 km</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn">Estimate</button>
+        </form>
+    </div>
+</body>
+</html>
