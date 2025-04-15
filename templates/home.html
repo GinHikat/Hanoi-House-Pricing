@@ -32,7 +32,7 @@
             font-size: 1.2em;
             margin-bottom: 20px;
         }
-        .btn {
+        .btn, .submit-btn {
             background: #27ae60;
             color: white;
             padding: 12px 25px;
@@ -40,9 +40,21 @@
             font-size: 1.2em;
             border-radius: 8px;
             transition: background 0.3s ease-in-out;
+            border: none;
+            cursor: pointer;
         }
-        .btn:hover {
+        .btn:hover, .submit-btn:hover {
             background: #219150;
+        }
+        input[type="text"], input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0 16px 0;
+            border: none;
+            border-radius: 6px;
+        }
+        form {
+            margin-top: 30px;
         }
     </style>
 </head>
@@ -50,7 +62,12 @@
     <div class="container">
         <h1>Welcome to House Price Estimator</h1>
         <p>Estimate property values instantly based on location, size, and features.</p>
-        <a href="/predict" class="btn">Estimate Price</a>
+        
+        <form method="POST" action="/">
+            <input type="text" name="name" placeholder="Enter your name" required>
+            <input type="number" name="age" placeholder="Enter your age" required>
+            <button type="submit" class="submit-btn">Continue</button>
+        </form>
     </div>
 </body>
 </html>

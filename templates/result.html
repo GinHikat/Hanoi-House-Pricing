@@ -8,7 +8,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background: url('https://source.unsplash.com/1600x900/?house,realestate') no-repeat center center fixed;
+            background: url('https://images.unsplash.com/photo-1615873968403-89e068629265?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8aG91c2UlMjBpbnRlcmlvcnxlbnwwfHwwfHx8MA%3D%3D') no-repeat center center fixed;
             background-size: cover;
             display: flex;
             justify-content: center;
@@ -22,7 +22,7 @@
             border-radius: 12px;
             box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
             text-align: center;
-            max-width: 450px;
+            max-width: 500px;
             backdrop-filter: blur(10px);
         }
         .price-box {
@@ -39,6 +39,27 @@
         h2 {
             margin-bottom: 10px;
         }
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 20px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 1em;
+        }
+        button {
+            margin-top: 10px;
+            background-color: #0984e3;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+        button:hover {
+            background-color: #065ea5;
+        }
     </style>
 </head>
 <body>
@@ -47,10 +68,47 @@
             <i class="fas fa-home icon"></i>
             <h2>Estimated House Price</h2>
             <p style="font-size: 1.5em; font-weight: bold;">
-                {{ (result|float|exp)|round(2)|int|comma }} VNĐ
+                {{ (result|float|exp)|int|comma }} VNĐ
             </p>
-            <p style="margin-top: 10px;">This estimate is based on the features you provided. 🏡</p>
+            <p style="margin-top: 10px;">
+                {% if result|exp >= 10000000000 and result|exp < 20000000000 %}
+                Real estate cannot be lost or stolen, nor can it be carried away. Purchased with common sense, paid for in full, and managed with reasonable care, it is about the safest investment in the world.
+                    <br>— <i>"Franklin D. Roosevelt"</i>🏡
+                {% elif result|exp >= 20000000000 and result|exp < 30000000000 %}
+                    This price range indicates a premium property, where modernity meets sophistication—a true asset for the discerning buyer.
+                    <br>— <i>"Warren Buffett        "</i>🏡
+                {% elif result|exp >= 30000000000 and result|exp < 40000000000 %}
+                A home is one of the most important assets that most people will ever buy. Homes are also where memories are made and you want to work with someone you can trust.
+                    <br>— <i>"Real Estate Insights, 2025"</i>🏡
+                {% elif result|exp >= 40000000000 %}    
+                    A property in this range is a symbol of opulence, an exceptional investment that offers both prestige and an unrivaled lifestyle.
+                    <br>— <i>"Real Estate Insights, 2025"</i>🏡
+                {% else %}
+                Owning a home is a keystone of wealth… both financial affluence and emotional security.
+                    <br>— <i>"Suze Orman"</i>🏡
+                {% endif %}
+            </p>
         </div>
+
+        <form method="POST" action="/submit-review">
+            <textarea name="review" placeholder="Leave your feedback here..." required></textarea>
+        
+            <label for="score" style="display: block; margin-top: 20px; font-weight: bold;">Rate this predictor: 
+                <span id="scoreValue">3</span>/5
+            </label>
+            <input 
+                type="range" 
+                name="score" 
+                id="score" 
+                min="1" 
+                max="5" 
+                value="3" 
+                style="width: 100%; margin-top: 10px;"
+                oninput="document.getElementById('scoreValue').textContent = this.value"
+            >
+        
+            <button type="submit">Submit Review / Return Home</button>
+        </form>
     </div>
 </body>
 </html>
