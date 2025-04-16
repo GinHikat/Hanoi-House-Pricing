@@ -75,7 +75,7 @@ def welcome():
         session['name'] = name
         session['age'] = age
 
-        file_path = 'data/user_data.csv'
+        file_path = 'user_data.csv'
         file_exists = os.path.isfile(file_path)
 
         with open(file_path, mode='a', newline='') as file:
@@ -126,14 +126,14 @@ def submit_review():
 
     if name and age:
         try:
-            df = pd.read_csv('data/user_data.csv')
+            df = pd.read_csv('user_data.csv')
             mask = (df['Name'] == name) & (df['Age'] == int(age))
             df.loc[mask, 'Review'] = review
             df.loc[mask, 'Score'] = score
-            df.to_csv('data/user_data.csv', index=False)
+            df.to_csv('user_data.csv', index=False)
         except FileNotFoundError:
             df = pd.DataFrame([{'Name': name, 'Age': age, 'Review': review, 'Score': score}])
-            df.to_csv('data/user_data.csv', index=False)
+            df.to_csv('user_data.csv', index=False)
 
     return redirect(url_for('welcome'))
     
