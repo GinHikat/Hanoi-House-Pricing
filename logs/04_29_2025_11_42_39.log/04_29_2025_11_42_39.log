@@ -1,0 +1,18 @@
+[2025-04-29 11:42:43,071] 18 root - INFO - Initialize data ingestion
+[2025-04-29 11:42:43,087] 22 root - INFO - Read data to csv
+[2025-04-29 11:42:43,087] 27 root - INFO - Train test split
+[2025-04-29 11:42:43,093] 30 root - INFO - Saving train and test
+[2025-04-29 11:42:43,105] 34 root - INFO - Saving complete!
+[2025-04-29 11:42:43,105] 75 root - INFO - Load train and test raw
+[2025-04-29 11:42:43,142] 90 root - INFO - Separate and save target
+[2025-04-29 11:42:43,142] 67 root - INFO - Filled Na, Encode and Scale complete!!
+[2025-04-29 11:42:43,142] 95 root - INFO - Start transforming
+[2025-04-29 11:42:43,189] 106 root - INFO - Save Preprocessor
+[2025-04-29 11:42:43,215] 33 root - INFO - Loading datasets
+[2025-04-29 11:42:43,292] 44 root - INFO - Define models and parameters
+[2025-04-29 11:42:43,294] 122 root - INFO - Model training complete
+[2025-04-29 11:42:43,447] 128 root - INFO - Saving model to artifacts
+[2025-04-29 11:42:43,493] 97 werkzeug - WARNING -  * Debugger is active!
+[2025-04-29 11:42:43,495] 97 werkzeug - INFO -  * Debugger PIN: 563-582-547
+[2025-04-29 11:42:48,085] 97 werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 11:42:48] "GET / HTTP/1.1" 200 -
+[2025-04-29 11:42:49,068] 97 werkzeug - INFO - 127.0.0.1 - - [29/Apr/2025 11:42:49] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -

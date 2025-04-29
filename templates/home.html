@@ -4,12 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>House Price Estimator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat+Brush&family=Calibri&family=Tw+Cent+MT&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Calibri', sans-serif;
             margin: 0;
             padding: 0;
-            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            background: url('https://images.pexels.com/photos/1732414/pexels-photo-1732414.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2') no-repeat center center fixed;
+            background-size: cover;
             color: white;
             display: flex;
             justify-content: center;
@@ -19,39 +21,74 @@
         }
         .container {
             background: rgba(0, 0, 0, 0.6);
-            padding: 40px;
+            padding: 40px 60px;
             border-radius: 12px;
-            box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.2);
-            max-width: 600px;
+            box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.4);
+            max-width: 650px;
+            font-family: 'Calibri', sans-serif;
+            text-align: left;
+        }
+        .header {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            padding: 10px 20px;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            font-family: 'Tw Cent MT', sans-serif;
+            font-size: 1.8em;
+            font-weight: bold;
         }
         h1 {
             font-size: 2.5em;
-            margin-bottom: 10px;
+            margin-bottom: 20px;
+            font-family: 'Tw Cent MT', sans-serif;
         }
         p {
-            font-size: 1.2em;
-            margin-bottom: 20px;
+            font-size: 1.3em;
+            margin-bottom: 30px;
+            font-family: 'Calibri', sans-serif;
         }
-        .btn, .submit-btn {
-            background: #27ae60;
+        .input-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+            margin: 15px 0;
+        }
+        .input-container input {
+            font-family: 'Caveat Brush', cursive;
+            font-size: 1.3em;
+            padding: 12px 20px;
+            margin: 5px 0;
+            border: 2px solid white;
+            border-radius: 30px;
+            width: 85%;
+            background-color: white;
+            color: black;
+            text-align: center;
+        }
+        .input-container input:focus {
+            outline: none;
+            border-color: #27ae60;
+        }
+        .arrow-btn {
+            font-family: 'Caveat Brush', cursive; /* Set the font to Caveat Brush */
+            font-size: 2.5em; /* Increase size */
             color: white;
-            padding: 12px 25px;
-            text-decoration: none;
-            font-size: 1.2em;
-            border-radius: 8px;
-            transition: background 0.3s ease-in-out;
-            border: none;
+            background: #007bff; /* Blue background */
+            border: 2px solid white; /* White border */
             cursor: pointer;
+            padding: 15px 25px;
+            border-radius: 50%;
+            transition: background-color 0.3s ease;
+            margin-top: 15px;
+            width: 90px;
+            height: 90px;
         }
-        .btn:hover, .submit-btn:hover {
-            background: #219150;
-        }
-        input[type="text"], input[type="number"] {
-            width: 100%;
-            padding: 10px;
-            margin: 8px 0 16px 0;
-            border: none;
-            border-radius: 6px;
+        .arrow-btn:hover {
+            background-color: #0056b3; /* Darker blue on hover */
         }
         form {
             margin-top: 30px;
@@ -59,14 +96,20 @@
     </style>
 </head>
 <body>
+    <div class="header">
+        Machine Learning Project – Group 3
+    </div>
+    
     <div class="container">
-        <h1>Welcome to House Price Estimator</h1>
-        <p>Estimate property values instantly based on location, size, and features.</p>
+        <h1>How much is my home worth?</h1>
+        <p>Your Home, Your Price—Precisely Calculated for You!</p>
         
         <form method="POST" action="/">
-            <input type="text" name="name" placeholder="Enter your name" required>
-            <input type="number" name="age" placeholder="Enter your age" required>
-            <button type="submit" class="submit-btn">Continue</button>
+            <div class="input-container">
+                <input type="text" name="name" placeholder="Enter your name" required>
+                <input type="number" name="age" placeholder="Enter your age" required>
+                <button type="submit" class="arrow-btn">></button> <!-- Arrow is in Caveat Brush -->
+            </div>
         </form>
     </div>
 </body>

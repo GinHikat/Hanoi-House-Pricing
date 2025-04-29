@@ -6,54 +6,17 @@ import math
 import os
 import csv
 
+from main.pipelines.full_process import Final
+from main.pipelines.auto_predict import Data, Prediction
+
 application = Flask(__name__)
 application.secret_key = 'ml1_midterm'
-
 app = application
-with open('artifacts/processor.pkl', 'rb') as file:
-    processor = pickle.load(file)
-    
-with open('artifacts/model.pkl', 'rb') as file:
-    model = pickle.load(file)
 
-class Data:
-    def __init__(self, area: float, bedrooms: int, property_type: str, 
-                 furniture: str, legal_status: str, distance_to_center: float, bathrooms: int, floors: int, name: str, age: int, review: str, score: int):
-        self.area = area
-        self.bedrooms = bedrooms
-        self.bathrooms = bathrooms
-        self.floors = floors
-        self.property_type = property_type
-        self.furniture = furniture
-        self.legal_status = legal_status
-        self.distance_to_center = distance_to_center
-        self.name = name
-        self.age = age
-        self.review = review
-        self.score = score
+#Auto execute all previous steps
+final_executor = Final()
+final_executor.all_step()
 
-    def get_user(self):
-        data = {
-            'username': self.name,
-            'age': self.age
-        }
-        return data
-    
-    def get_review(self):
-        return self.review
-    
-    def get_data(self):
-        data_input = {
-            'area': [self.area],
-            'bedrooms': [self.bedrooms],
-            'bathrooms': [self.bathrooms],
-            'floors': [self.floors],
-            'property_type': [self.property_type],
-            'furniture': [self.furniture],
-            'legal_status': [self.legal_status],
-            'distance_to_center': [self.distance_to_center]
-        }
-        return pd.DataFrame(data_input)
 
 @app.template_filter('comma')
 def comma_format(value):
@@ -81,8 +44,8 @@ def welcome():
         with open(file_path, mode='a', newline='') as file:
             writer = csv.writer(file)
             if not file_exists: #Check if file exists
-                writer.writerow(['Name', 'Age', 'Review'])
-            writer.writerow([name, age, '']) #Keep review empty for later
+                writer.writerow(['Name', 'Age', 'Review','Score'])
+            writer.writerow([name, age, '', '']) #Keep review and score empty for later
 
         return redirect(url_for('predict'))
 
@@ -111,9 +74,8 @@ def predict():
         
         pred = data.get_data()
         
-        pred = pd.DataFrame(processor.transform(pred))
-        
-        result = model.predict(pred)
+        predictor = Prediction()
+        result = predictor.init_predict(pred)
         
         return render_template('result.html', result = result)
     
